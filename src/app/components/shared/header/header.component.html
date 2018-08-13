@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Mi App Angular</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" *ngIf="autenticado">
+            <li *ngFor="let item of opcion" class="nav-item " routerLinkActive="active">
+                <a class="nav-link" [routerLink]="[item.url]" href="#">{{item.nombre}} </a>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+    <form class="form-inline my-2 my-lg-0">
+        <a class="btn btn-outline-warning my-2 my-sm-0" *ngIf="!autenticado" [routerLink]="['/login']">Iniciar Session</a>
+        <button (click)="cerrarSession()" *ngIf="autenticado" class="btn btn-outline-success my-2 my-sm-0" type="button">Cerrar Session</button>
+    </form>
+</nav>

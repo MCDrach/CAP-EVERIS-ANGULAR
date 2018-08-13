@@ -1,0 +1,37 @@
+<h2>Ingrese sus credenciales</h2>
+<hr>
+<form #forma="ngForm" (ngSubmit)="validar(forma)">
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Correo</label>
+        <div class="col-md-8">
+
+            <input #correo="ngModel" class="form-control" [(ngModel)]="usuario.email" name="correo" required type="email" placeholder="Correo electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+            <div *ngIf="correo.errors?.required">Debe ingresar un correo</div>
+            <div *ngIf="correo.errors?.pattern">El Formato ingresado no un correo</div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Clave</label>
+        <div class="col-8">
+
+            <input #clave="ngModel" [(ngModel)]="usuario.password" name="clave" minlength="4" required class="form-control" type="password" placeholder="Clave">
+            <div *ngIf="clave.errors?.required">Debe ingresar la clave</div>
+            <div *ngIf="clave.errors?.minlength">Debe ingresar como nimino {{clave.errors.minlength.requiredLength}} caracteres</div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button [disabled]="!forma.valid" type="submit" class="btn btn-outline-primary">
+        Guardar
+      </button>
+        </div>
+    </div>
+    <br> {{forma.value | json}}
+    <br> {{forma.valid | json}}
+
+</form>
